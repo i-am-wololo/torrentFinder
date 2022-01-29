@@ -1,0 +1,46 @@
+import requests
+import json
+
+
+# shenanigans to import file from parent folder
+import sys
+sys.path.append('../')
+import utils
+
+# luckily this one has a rest api
+# it will be easier to scrape of this website
+# yts can only be used for movies though
+
+# torrent string  magnet:?xt=urn:btih:TORRENT_HASH&dn=Url+Encoded+Movie+Name&tr=http://track.one:1234/announce&tr=udp://track.two:80
+
+torrent_string_template =  "magnet:?xt=urn:btih:{hash}&dn={movieurl}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.leechers-paradise.org:6969"
+
+url =  "https://yts.mx/api/v2/list_movies.json?query_term={query}&sort=seeds" 
+
+
+
+# if no quality format is told, its going to get all of them
+def search(query, quality=None):
+    request = requests.get(url.format(query=query))
+    requestsDict = json.loads(request.text)
+    movies = requestsDict['data']['movies']
+    results = []
+
+    for movie in movies:
+        entry= {}
+
+        entry['title'] = movie['title']
+        entry['magnet'] = []
+    
+        if quality==None:
+            for torrents in movie['torrents']:
+                magnet = {}
+                magnet['link'] = torrent_string_template.format(hash=torrents['hash'], movieurl=entry['title'].replace(" ", "+"))
+                magnet['seed'] = torrents['seeds']
+                magnet['quality'] = torrents['quality']
+                entry['magnet'].append(magnet)
+        
+        results.append(entry)
+
+    return results
+    

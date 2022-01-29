@@ -2,6 +2,11 @@ import requests
 from bs4 import BeautifulSoup
 
 
+# shenanigans to import file from parent folder
+import sys
+sys.path.append('../')
+import utils
+
 url = "https://www.1337xx.to/category-search/{query}/{type}/{page}/"
 
 
@@ -16,7 +21,7 @@ def search(query, type):
     soup = BeautifulSoup(r.text, "html.parser")
     torrents_table = soup.find_all('table')[0].tbody
     
-
+    print(utils.qualities)
     for tr in torrents_table.find_all('tr'):
     #for this website i have to get the torrent link on each torrent page individually
 
@@ -29,10 +34,16 @@ def search(query, type):
 
 
         entry = {}
-        entry["magnet"] = magnet
-        entry['title'] = tr.find_all('td')[0].find_all('a').string
-        entry['seeds'] = tr.find_all('td')[1].string
+        
+        entry["magnet"] = {}
+        entry['magnet']['link'] = magnet
+        entry['title'] = tr.find_all('td')[0].find_all('a')[1].string
+        entry['magnet']['seeds'] = tr.find_all('td')[1].string
+        entry['magnet']['quality'] = utils.guess_quality(entry['title'])
+        entry['source'] = "1337xx"
         results.append(entry) 
+       
+        
 
     return results
         # entry['title']

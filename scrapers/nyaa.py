@@ -1,6 +1,13 @@
 import requests
 from bs4 import BeautifulSoup
 
+# shenanigans to import file from parent folder
+import sys
+sys.path.append('../')
+import utils
+
+
+
 url = "https://nyaa.si/?f=0&c=1_0&q={query}&p={page}"
 
 
@@ -22,10 +29,13 @@ def search(query):
         entry = {}
 
         entry["title"] = tr.find_all("td")[1].a['title']
-        entry["seeds"] = tr.find_all("td")[5].string
-        entry["magnet"] = tr.find_all('td')[2].find_all('a')[1]['href']
+        entry['magnet'] = {}
+        entry["magnet"]['link'] = tr.find_all('td')[2].find_all('a')[1]['href']
+        entry['magnet']['seeds'] = tr.find_all('td')[5].string
+        entry['magnet']['quality'] = utils.guess_quality(entry['title'])
+        entry["source"] = "nyaa"
         results.append(entry)
-
+    
 
 
     return results 
