@@ -13,7 +13,7 @@ import utils
 
 # torrent string  magnet:?xt=urn:btih:TORRENT_HASH&dn=Url+Encoded+Movie+Name&tr=http://track.one:1234/announce&tr=udp://track.two:80
 
-torrent_string_template =  "magnet:?xt=urn:btih:{hash}&dn={movieurl}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.leechers-paradise.org:6969"
+torrent_string_template =  "magnet:?xt=urn:btih:{hash}&dn={movieurl}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.coppersurfer.tk:6969"
 
 url =  "https://yts.mx/api/v2/list_movies.json?query_term={query}&sort=seeds" 
 
@@ -35,7 +35,7 @@ def search(query, quality=None):
         if quality==None:
             for torrents in movie['torrents']:
                 magnet = {}
-                magnet['link'] = torrent_string_template.format(hash=torrents['hash'], movieurl=entry['title'].replace(" ", "+"))
+                magnet['link'] = torrent_string_template.format(hash=torrents['hash'], movieurl=entry['title'].replace(" ", "+").replace(':', '+').replace('-', "+"))
                 magnet['seed'] = torrents['seeds']
                 magnet['quality'] = torrents['quality']
                 entry['magnet'].append(magnet)
