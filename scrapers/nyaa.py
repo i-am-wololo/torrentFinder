@@ -23,7 +23,7 @@ def search(query):
 
         entry["title"] = tr.find_all("td")[1].a['title']
         entry["seeds"] = tr.find_all("td")[5].string
-        entry["link"] = tr.find_all('td')[2].find_all('a')[1]['href']
+        entry["magnet"] = tr.find_all('td')[2].find_all('a')[1]['href']
         results.append(entry)
 
 
