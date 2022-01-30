@@ -11,6 +11,9 @@ def index():
 
 
 
+
+
+
 @app.route('/query', methods=['GET', 'POST'])
 def search():
     if request.method == "GET":
