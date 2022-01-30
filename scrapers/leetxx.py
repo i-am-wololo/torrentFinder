@@ -8,20 +8,25 @@ sys.path.append('../')
 import utils
 
 url = "https://www.1337xx.to/category-search/{query}/{type}/{page}/"
+url_none = "https://www.1337xx.to/search/{query}/{page}/"
 
 
-
-def search(query, type):
+def search(query, type=None):
     #type should either be Movies or TV
     page = 1
     results = []
     query = query.replace(' ', "%20") # Make query Url friendly
 
-    r = requests.get(url.format(query=query, type=type, page=page))
+    # if type is not mentionned
+    if type == None:
+        r = requests.get(url_none.format(query=query, page=page))
+    else:
+        r = requests.get(url.format(query=query, type=type, page=page))
+
+
     soup = BeautifulSoup(r.text, "html.parser")
     torrents_table = soup.find_all('table')[0].tbody
     
-    print(utils.qualities)
     for tr in torrents_table.find_all('tr'):
     #for this website i have to get the torrent link on each torrent page individually
 
@@ -43,7 +48,6 @@ def search(query, type):
         entry['source'] = "1337xx"
         results.append(entry) 
        
-        
-
+     
     return results
         # entry['title']

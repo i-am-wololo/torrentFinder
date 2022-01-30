@@ -31,7 +31,7 @@ def search(query, quality=None):
 
         entry['title'] = movie['title']
         entry['magnet'] = []
-    
+        entry['source']  = 'yts'
         if quality==None:
             for torrents in movie['torrents']:
                 magnet = {}

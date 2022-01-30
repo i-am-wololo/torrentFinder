@@ -17,6 +17,7 @@ def search(query):
     query = query.replace(' ', '%20')
     #basic bs4 init stuff
     r = requests.get(url.format(query=query, page=page))
+
     soup = BeautifulSoup(r.text, 'html.parser')
     torrents = soup.find_all('table')[0]
 
