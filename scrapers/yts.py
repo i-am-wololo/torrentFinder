@@ -23,6 +23,8 @@ url =  "https://yts.mx/api/v2/list_movies.json?query_term={query}&sort=seeds"
 def search(query, quality=None):
     request = requests.get(url.format(query=query))
     requestsDict = json.loads(request.text)
+    if requestsDict['data']['movie_count'] == 0:
+        return []
     movies = requestsDict['data']['movies']
     results = []
 
