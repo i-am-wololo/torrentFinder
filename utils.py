@@ -1,6 +1,9 @@
 
 # Streams will be represented by an array of dictionaries with their quality and how much seeds they have
 
+anime = ['nyaa']
+movies = ['yts', 'leetxx']
+
 
 qualities = ['720p', '480p', '1080p']
 

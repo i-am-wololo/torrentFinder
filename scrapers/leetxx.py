@@ -7,8 +7,8 @@ import sys
 sys.path.append('../')
 import utils
 
-url = "https://www.1337xx.to/category-search/{query}/{type}/{page}/"
-url_none = "https://www.1337xx.to/search/{query}/{page}/"
+url = "https://www.1337xxx.to/category-search/{query}/{type}/{page}/"
+url_none = "https://www.1337xxx.to/search/{query}/{page}/"
 
 
 def search(query, type=None):
@@ -32,7 +32,7 @@ def search(query, type=None):
 
 
         #weird shenanigans to get the link
-        link =  "https://www.1337xx.to/"+tr.find_all('td')[0].find_all('a')[1]['href']
+        link =  "https://www.1337xxx.to/"+tr.find_all('td')[0].find_all('a')[1]['href']
         page = requests.get(link)
         parsed_page = BeautifulSoup(page.text, 'html.parser')
         magnet = parsed_page.find_all('a', "l3426749b3b895e9356348e295596e5f2634c98d8 la1038a02a9e0ee51f6e4be8730ec3edea40279a2 l0d669aa8b23687a65b2981747a14a1be1174ba2c")[0]['href']
@@ -45,7 +45,7 @@ def search(query, type=None):
         entry['title'] = tr.find_all('td')[0].find_all('a')[1].string
         entry['magnet']['seeds'] = tr.find_all('td')[1].string
         entry['magnet']['quality'] = utils.guess_quality(entry['title'])
-        entry['source'] = "1337xx"
+        entry['source'] = "1337xxx"
         results.append(entry) 
        
      
