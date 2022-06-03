@@ -15,7 +15,7 @@ import utils
 
 torrent_string_template =  "magnet:?xt=urn:btih:{hash}&dn={movieurl}&tr=udp://open.demonii.com:1337/announce&tr=udp://tracker.openbittorrent.com:80&tr=udp://glotorrents.pw:6969/announce&tr=udp://tracker.coppersurfer.tk:6969"
 
-url =  "https://yts.mx/api/v2/list_movies.json?query_term={query}&sort=seeds" 
+url =  "https://yts.torrentbay.to/api/v2/list_movies.json?query_term={query}&sort=seeds" 
 
 
 

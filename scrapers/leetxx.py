@@ -32,10 +32,10 @@ def search(query, type=None):
 
 
         #weird shenanigans to get the link
-        link =  "https://www.1337xxx.to/"+tr.find_all('td')[0].find_all('a')[1]['href']
+        link =  "https://www.1337xxx.to"+tr.find_all('td')[0].find_all('a')[1]['href']
         page = requests.get(link)
         parsed_page = BeautifulSoup(page.text, 'html.parser')
-        magnet = parsed_page.find_all('a', "l3426749b3b895e9356348e295596e5f2634c98d8 la1038a02a9e0ee51f6e4be8730ec3edea40279a2 l0d669aa8b23687a65b2981747a14a1be1174ba2c")[0]['href']
+        magnet = parsed_page.find_all('a', "la66652a751a8bbc7c4728229118d5d17d2c33f0f ld23ead88f3e9f3cff712ca179384ff5383646951 l0a65abe275a2878690912379c8c40a2026d789cc")[0]['href']
 
 
         entry = {}
