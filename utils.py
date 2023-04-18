@@ -12,9 +12,10 @@ qualities = ['720p', '480p', '1080p', '2160p']
 #     return sorted(array, key=itemgetter('seed'))
 
 
-def sort_by_quality(array):
-    pass
+def sort_by_seed(result):
 
+    result = sorted(result, key=lambda d: d['magnet']['seed'], reverse=True)
+    return result
 
 
 def guess_quality(title):
