@@ -2,9 +2,7 @@ import importlib
 import tomli
 # remove rarbg and torrent9 because not done yet
 
-
-
-providers = ['nyaa', 'yts']
+providers = ['nyaa', 'yts', '1337x']
 
 '''
 you usually dont need to make the search query url safe
