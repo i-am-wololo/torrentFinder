@@ -34,13 +34,14 @@ def search(query, quality=None):
         entry['title'] = movie['title']
         entry['magnet'] = []
         entry['source']  = 'yts'
-        if quality==None:
-            for torrents in movie['torrents']:
-                magnet = {}
-                magnet['link'] = torrent_string_template.format(hash=torrents['hash'], movieurl=entry['title'].replace(" ", "+").replace(':', '+').replace('-', "+"))
-                magnet['seed'] = torrents['seeds']
-                magnet['quality'] = torrents['quality']
-                entry['magnet'].append(magnet)
+        for torrents in movie['torrents']:
+            if quality is not None and quality != torrents['quality']:
+                continue
+            magnet = {}
+            magnet['link'] = torrent_string_template.format(hash=torrents['hash'], movieurl=entry['title'].replace(" ", "+").replace(':', '+').replace('-', "+"))
+            magnet['seed'] = torrents['seeds']
+            magnet['quality'] = torrents['quality']
+            entry['magnet'].append(magnet)
         
         results.append(entry)
 

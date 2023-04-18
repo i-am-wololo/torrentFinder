@@ -5,10 +5,11 @@ anime = ['nyaa']
 movies = ['yts', 'leetxx']
 
 
-qualities = ['720p', '480p', '1080p']
+qualities = ['720p', '480p', '1080p', '2160p']
 
-def sort_by_seed(array):
-    return sorted(array, key=itemgetter('seed'))
+
+# def sort_by_seed(array):
+#     return sorted(array, key=itemgetter('seed'))
 
 
 def sort_by_quality(array):

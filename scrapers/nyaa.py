@@ -11,7 +11,7 @@ import utils
 url = "https://nyaa.si/?f=0&c=1_0&q={query}&p={page}"
 
 
-def search(query):
+def search(query, quality=None):
     page = 1
     results = []
     query = query.replace(' ', '%20')
@@ -28,13 +28,15 @@ def search(query):
     # building dictionary NOTE: this could be replaced with a class
     for tr in list_of_torrrents:
         entry = {}
-        if "comments" in tr.find_all("td")[1].a['title']:
+        if "comment" in tr.find_all("td")[1].a['title']:
+            continue
+        if quality is not None and quality != utils.guess_quality(entry[title]):
             continue
         entry["title"] = tr.find_all("td")[1].a['title']
-        entry['magnet'] = {}
-        entry["magnet"]['link'] = tr.find_all('td')[2].find_all('a')[1]['href']
-        entry['magnet']['seeds'] = tr.find_all('td')[5].string
-        entry['magnet']['quality'] = utils.guess_quality(entry['title'])
+        entry['magnet'] = [{}]
+        entry["magnet"][0]['link'] = tr.find_all('td')[2].find_all('a')[1]['href']
+        entry['magnet'][0]['seeds'] = tr.find_all('td')[5].string
+        entry['magnet'][0]['quality'] = utils.guess_quality(entry['title'])
         entry["source"] = "nyaa"
         results.append(entry)
     
