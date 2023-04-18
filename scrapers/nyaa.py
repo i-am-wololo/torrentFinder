@@ -33,10 +33,10 @@ def search(query, quality=None):
         if quality is not None and quality != utils.guess_quality(entry[title]):
             continue
         entry["title"] = tr.find_all("td")[1].a['title']
-        entry['magnet'] = [{}]
-        entry["magnet"][0]['link'] = tr.find_all('td')[2].find_all('a')[1]['href']
-        entry['magnet'][0]['seeds'] = tr.find_all('td')[5].string
-        entry['magnet'][0]['quality'] = utils.guess_quality(entry['title'])
+        entry['magnet'] = {}
+        entry["magnet"]['link'] = tr.find_all('td')[2].find_all('a')[1]['href']
+        entry['magnet']['seeds'] = tr.find_all('td')[5].string
+        entry['magnet']['quality'] = utils.guess_quality(entry['title'])
         entry["source"] = "nyaa"
         results.append(entry)
     
