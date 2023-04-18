@@ -1,7 +1,8 @@
-import main, time
+import main
+import time
 
+startTime = time.time()
 
-startTime= time.time()
-
-main.search("kimetsu no yaiba")
+for i in main.search("kimetsu no yaiba"):
+    print(i["title"])
 print(f"execution time was {time.time()-startTime})")

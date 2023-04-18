@@ -4,7 +4,7 @@ import importlib
 
 
 
-providers = ['leetxx', 'nyaa', 'yts']
+providers = ['nyaa', 'yts']
 
 '''
 you usually dont need to make the search query url safe
