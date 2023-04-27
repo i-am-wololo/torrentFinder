@@ -1,4 +1,4 @@
 # quality = "1080p"
 quality = "none"
-providers = ["nyaa", "yts"]  # providers (in scrapers folder) currently only nyaa and yts are working
+providers = ["nyaa", "yts", "leetx"]  # providers (in scrapers folder) currently only nyaa and yts are working
 command = "peerflix --mpv "  # program you want to pass the end result to

@@ -19,6 +19,9 @@ def search(query, quality=None):
     r = requests.get(url.format(query=query, page=page))
 
     soup = BeautifulSoup(r.text, 'html.parser')
+    if soup.find_all("table") is None:
+        return 
+
     torrents = soup.find_all('table')[0]
 
     # cleaning list of table elements
