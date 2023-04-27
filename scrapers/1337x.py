@@ -47,7 +47,7 @@ def search(query, type=None):
         entry['title'] = tr.find_all('td')[0].find_all('a')[1].string
         entry['magnet']['seeds'] = int(tr.find_all('td')[1].string)
         entry['magnet']['quality'] = utils.guess_quality(entry['title'])
-        entry['source'] = "1337xxx"
+        entry['source'] = "1337x"
         results.append(entry) 
     return results
     # entry['title']

@@ -18,7 +18,8 @@ def sort_by_seed(result):
     return result
 
 
-def guess_quality(title):
+def guess_quality(title: str):
+    title = title.upper()
     for i in qualities:
         if title.find(i)!= -1:
             return i
